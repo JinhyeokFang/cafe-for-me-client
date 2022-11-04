@@ -1,0 +1,27 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    padding: 15px;
+
+    border: 1px solid#6f4e37;
+    border-radius: 2px;
+}
+
+@media only screen and (max-width : 1200px) {
+    .box {
+        width: 700px;
+    }
+}
+
+@media only screen and (max-width : 750px) {
+    .box {
+        width: 450px;
+    }
+}
+
+@media only screen and (max-width : 480px) {
+    .box {
+        width: 300px;
+    }
+}
