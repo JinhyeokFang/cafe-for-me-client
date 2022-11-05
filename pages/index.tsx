@@ -11,10 +11,15 @@ import TitleText from '../components/title_text'
 import ParagraphText from '../components/paragraph'
 import Header from '../layouts/header'
 import Footer from '../layouts/footer'
+import useCafe from '../swr/hooks/cafe.hook'
+import DetailText from '../components/detail_text'
 
 const Home: NextPage = () => {
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
+  const [query, setQuery] = useState('');
+  const { data, isLoading } = useCafe(query);
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(position => {
       setLatitude(position.coords.latitude);
@@ -39,10 +44,17 @@ const Home: NextPage = () => {
       </Head>
   
       <Dialog style={{ alignItems: 'center' }} ref={dialogRef}>
-        <TitleText content='Dialog!' />
-        <ParagraphText content='paragraph!' />
-        <br /><br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br /><br /><br />
+        <TitleText content='카페 검색' />
+        <Input type='text' valueUpdateEvent={setQuery} />
+        {
+          isLoading ? '로딩중' : data == undefined ? '' :
+          data.cafes.map((cafe: Record<string, unknown>, index: number) =>(
+            <Box style={{ width: '100%' }}>
+              <ParagraphText content={JSON.stringify(cafe.name)} key={index} />
+              <DetailText content={JSON.stringify(cafe.address)} />
+            </Box>
+          ))
+        }
         <Button content='button!' width='50%'/>
       </Dialog>
 
