@@ -8,6 +8,7 @@
     border: 1px solid #6f4e37;
     border-radius: 2px;
     outline: none;
+    background: white;
 }
 
 .input:focus {
