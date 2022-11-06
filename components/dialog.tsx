@@ -12,7 +12,7 @@ export interface DialogRef {
 
 const Dialog: FC<DialogProps> = (props: DialogProps, ref: MutableRefObject<DialogRef>) => {
     const { children, style } = props;
-    const [visibility, setVisibility] = useState(true);
+    const [ visibility, setVisibility ] = useState(true);
 
     const onCloseButtonClicked = () => {
         setVisibility(false);
@@ -25,7 +25,7 @@ const Dialog: FC<DialogProps> = (props: DialogProps, ref: MutableRefObject<Dialo
     }));
 
     return (
-        <div className={styles.container} style={{...style, opacity: visibility ? 1 : 0, top: visibility ? '0' : '-100vh'}} >
+        <div className={styles.container} style={{...style, opacity: visibility ? 1 : 0, visibility: (visibility ? 'visible' : 'hidden')}} >
             <button 
                 className={styles.closeButton} 
                 style={{ width: '30px', position: 'absolute', right: '20px', top: '20px' }}

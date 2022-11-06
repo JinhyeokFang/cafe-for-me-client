@@ -4,6 +4,7 @@ import styles from '../styles/components/input.module.css'
 interface InputProps {
     type: string;
     valueUpdateEvent: (value: string) => void;
+    placeholder?: string;
     defaultValue?: string;
     width?: string;
     height?: string;
@@ -15,7 +16,7 @@ export interface InputRef {
 }
 
 const Input: FC<InputProps> = (props: InputProps, ref: MutableRefObject<InputRef>) => {
-    const { type, valueUpdateEvent, defaultValue, width, height } = props;
+    const { type, valueUpdateEvent, defaultValue, width, height, placeholder } = props;
     const [value, setValue] = useState(defaultValue || '');
 
     const updateValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +36,8 @@ const Input: FC<InputProps> = (props: InputProps, ref: MutableRefObject<InputRef
             className={styles.input} 
             value={value} 
             onChange={updateValue}
-            style={{ width, height }} 
+            style={{ width, height }}
+            placeholder={placeholder} 
         />
     )
 }
