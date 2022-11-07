@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import styles from '../styles/components/paragraph.module.css'
+import styles from '../../styles/components/common/paragraph.module.css'
 
 interface ParagraphTextProps {
     content: string;

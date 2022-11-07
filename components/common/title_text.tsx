@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import styles from '../styles/components/title.module.css'
+import styles from '../../styles/components/common/title.module.css'
 
 interface TitleTextProps {
     content: string;

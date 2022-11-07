@@ -1,5 +1,5 @@
 import React, { FC, forwardRef, ForwardRefRenderFunction, MutableRefObject, Ref, useImperativeHandle, useRef, useState } from 'react'
-import styles from '../styles/components/input.module.css'
+import styles from '../../styles/components/common/input.module.css'
 
 interface InputProps {
     type: string;

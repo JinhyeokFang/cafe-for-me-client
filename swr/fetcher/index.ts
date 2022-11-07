@@ -1,8 +1,10 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import FetcherConfig from "./fetcher-config";
 import Method from "./method";
 
-export default function fetcher(fetcherConfig?: FetcherConfig) {
+export type Fetcher = (url: string) => Promise<AxiosResponse>;
+
+export default function createFetcher(fetcherConfig?: FetcherConfig): Fetcher {
     const { method, config, data } = fetcherConfig || {};
 
     switch (method) {

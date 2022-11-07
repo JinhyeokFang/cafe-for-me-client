@@ -1,11 +1,11 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import styles from '../styles/pages/Home.module.css'
-import Header from '../layouts/header'
-import Footer from '../layouts/footer'
-import { FindNearCafe } from '../components/sections/find-near-cafe'
+import Box from '../../../components/common/box'
+import styles from '../../styles/pages/AddCafe.module.css'
+import Header from '../../../layouts/header'
+import Footer from '../../../layouts/footer'
 
-const IndexPage: NextPage = () => {
+const EditReviewPage: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
@@ -18,11 +18,13 @@ const IndexPage: NextPage = () => {
       <Header />
 
       <main className={styles.main}>
-        <FindNearCafe />
+        <Box>
+        </Box>
       </main>
+
       <Footer />
     </div>
   )
 }
 
-export default IndexPage
+export default EditReviewPage

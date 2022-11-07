@@ -1,5 +1,5 @@
 import { CSSProperties, FC, ReactNode } from 'react'
-import styles from '../styles/components/box.module.css'
+import styles from '../../styles/components/common/box.module.css'
 
 interface BoxProps {
     children: ReactNode;

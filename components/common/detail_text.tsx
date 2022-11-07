@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import styles from '../styles/components/detail.module.css'
+import styles from '../../styles/components/common/detail.module.css'
 
 interface DetailTextProps {
     content: string;

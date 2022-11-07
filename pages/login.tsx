@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Form from '../components/form'
+import { LoginForm } from '../components/sections/login-form'
 import styles from '../styles/Home.module.css'
 
 const LoginPage: NextPage = () => {
@@ -14,7 +14,7 @@ const LoginPage: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <Form />
+        <LoginForm />
       </main>
     </div>
   )
