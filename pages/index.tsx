@@ -9,7 +9,7 @@ const IndexPage: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>카페 추천 사이트</title>
+        <title>Cafe4Me</title>
         <meta name="description" content="Cafe Suggestion Site For Me" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

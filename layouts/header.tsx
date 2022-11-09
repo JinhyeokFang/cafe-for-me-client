@@ -17,7 +17,7 @@ const Header: FC = () => {
     }, []);
 
     const isTopOfPage = useMemo(() => {
-        return scrollPosition === 0;
+        return false && scrollPosition === 0;
     }, [scrollPosition]);
 
   return (

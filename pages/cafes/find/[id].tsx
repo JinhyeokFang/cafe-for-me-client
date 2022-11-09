@@ -4,8 +4,12 @@ import Box from '../../../components/common/box'
 import styles from '../../styles/pages/AddCafe.module.css'
 import Header from '../../../layouts/header'
 import Footer from '../../../layouts/footer'
+import { useRouter } from 'next/router'
 
 const FindCafePage: NextPage = () => {
+  const router = useRouter()
+  const { id } = router.query;
+
   return (
     <div className={styles.container}>
       <Head>

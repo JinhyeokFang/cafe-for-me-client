@@ -30,7 +30,7 @@ a {
 
 * {
   box-sizing: border-box;
-  transition: 0.5s all;
+  transition: 0.5s opacity;
 }
 
 @media (prefers-color-scheme: dark) {

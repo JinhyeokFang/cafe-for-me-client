@@ -7,17 +7,18 @@ export enum ReviewAPIQueryType {
   UserId
 }
 
-export default function useCafe(query: string, queryType?: ReviewAPIQueryType, fetcher?: Fetcher) {
-  let url = `/api/review/${query}`;
+export default function useReview(queryType: ReviewAPIQueryType, query?: string, fetcher?: Fetcher) {
+  let url: string;
   switch (queryType) {
-    case ReviewAPIQueryType.ReviewId:
-
-      break;
     case ReviewAPIQueryType.CafeId:
-
+      url = `/api/review/${query}`;
       break;
     case ReviewAPIQueryType.UserId:
-
+      url = `/api/review/`;
+      break;
+    case ReviewAPIQueryType.ReviewId:
+    default:
+      url = `/api/review/${query}`;
       break;
   }
   const { data, error } = useSWR(url, fetcher || createFetcher());
