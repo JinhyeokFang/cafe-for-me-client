@@ -4,23 +4,29 @@ import styles from '../../styles/components/common/dialog.module.css'
 interface DialogProps {
     children: ReactNode;
     style?: CSSProperties;
+    closedEvent: () => void;
 }
 
 export interface DialogRef {
     show: () => void;
+    close: () => void;
 }
 
 const Dialog: FC<DialogProps> = (props: DialogProps, ref: MutableRefObject<DialogRef>) => {
-    const { children, style } = props;
-    const [ visibility, setVisibility ] = useState(true);
+    const { children, style, closedEvent } = props;
+    const [ visibility, setVisibility ] = useState(false);
 
     const onCloseButtonClicked = () => {
         setVisibility(false);
+        closedEvent();
     }
 
     useImperativeHandle(ref, () => ({
         show() {
           setVisibility(true);
+        },
+        close() {
+          setVisibility(false);
         }
     }));
 

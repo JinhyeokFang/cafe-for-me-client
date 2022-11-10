@@ -1,10 +1,11 @@
 import axios, { AxiosResponse } from "axios";
+import { FetcherResponse } from "swr/dist/types";
 import FetcherConfig from "./fetcher-config";
 import Method from "./method";
 
-export type Fetcher = (url: string) => Promise<AxiosResponse>;
+export type Fetcher<T> = (url: string) => FetcherResponse<T>;
 
-export default function createFetcher(fetcherConfig?: FetcherConfig): Fetcher {
+export default function createFetcher<T>(fetcherConfig?: FetcherConfig): Fetcher<T> {
     const { method, config, data } = fetcherConfig || {};
 
     switch (method) {

@@ -1,5 +1,6 @@
 import { FC, useState } from "react"
 import styles from '../../styles/components/common/marker-content.module.css'
+import Button from "./button";
 
 interface MarkerContentProps {
     name: string;
@@ -50,6 +51,7 @@ const MarkerContent: FC<MarkerContentProps> = (props: MarkerContentProps) => {
                         </>
                     ))
                 }
+                <Button content='자세히 보기' style={{width:'100%', height: '20px', fontSize: '12px'}}/>
             </div>
         </div>
     )

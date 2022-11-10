@@ -1,10 +1,12 @@
 import Box from '../common/box'
 import styles from '../../styles/components/sections/find-near-cafe.module.css'
 import { CustomOverlayMap, Map, MapMarker } from 'react-kakao-maps-sdk'
-import { FC, useEffect, useMemo, useState } from 'react'
+import { FC, MutableRefObject, useEffect, useMemo, useRef, useState } from 'react'
 import Button from '../common/button'
 import useCafe, { CafeAPIQueryType } from '../../swr/hooks/cafe.hook'
 import MarkerContent from '../common/marker-content'
+import LocationDialog, { LocationDialogRef } from '../dialogs/location-dialog'
+import TitleText from '../common/title_text'
 
 export const FindNearCafe: FC = () => {
   const [location, setLocation] = useState({
@@ -17,6 +19,8 @@ export const FindNearCafe: FC = () => {
     maxDistance: 1000000
   });
 
+  const dialogRef: MutableRefObject<LocationDialogRef> = useRef<LocationDialogRef>() as MutableRefObject<LocationDialogRef>;
+
   const moveToCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition(position => {
       setLocation({
@@ -24,6 +28,11 @@ export const FindNearCafe: FC = () => {
         longitude: position.coords.longitude,
       })
     });
+  }
+
+  const showLocationDialog = () => {
+    if (dialogRef.current != undefined)
+      dialogRef.current.show();
   }
 
   useEffect(() => {
@@ -39,6 +48,8 @@ export const FindNearCafe: FC = () => {
 
   return (
       <Box>
+          <LocationDialog ref={dialogRef} closedEvent={(latitude, longitude) => {setLocation({latitude: parseFloat(latitude), longitude: parseFloat(longitude)})}} />
+          <TitleText content='지도에서 카페 찾기' />
           <Map
             center={center}
             style={{ width: "100%", height: "360px" }}
@@ -70,9 +81,9 @@ export const FindNearCafe: FC = () => {
             : ''
           }
           </Map>
-          <div style={{ display: 'flex' }}>
-            <Button content='원하는 위치로 이동하기' width='50%' />
-            <Button content='현재 위치로 이동하기' width='50%' clickEvent={moveToCurrentLocation}/>
+          <div style={{ display: 'flex', justifyContent:'space-between', marginTop: '10px' }}>
+            <Button content='원하는 위치로 이동' width='49.5%' clickEvent={showLocationDialog} />
+            <Button content='현재 위치로 이동' width='49.5%' clickEvent={moveToCurrentLocation}/>
           </div>
       </Box>
   )

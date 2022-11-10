@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { CSSProperties, FC } from 'react'
 import styles from '../../styles/components/common/button.module.css'
 
 interface ButtonProp {
@@ -6,16 +6,17 @@ interface ButtonProp {
     clickEvent?: (e: React.MouseEvent<HTMLElement>) => void;
     width?: string;
     height?: string;
+    style?: CSSProperties;
 }
 
 const Button: FC<ButtonProp> = (props: ButtonProp) => {
-  const { content, clickEvent, width, height } = props;
+  const { style, content, clickEvent, width, height } = props;
 
   return (
     <button 
         className={styles.button}
         onClick={clickEvent}
-        style={{ width, height }}
+        style={{ width, height, ...style }}
     >
         { content }
     </button>

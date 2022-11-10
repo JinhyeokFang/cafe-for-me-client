@@ -4,18 +4,26 @@
     display: flex;
     flex-direction: column;
     width: 750px;
-    height: 80vh;
-    overflow-x: scroll;
     padding: 15px;
 
     border-radius: 2px;
     box-shadow: 0px 0px 5px 5px rgba(20, 20, 20, 0.4);
 
     background: white;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
 }
 
 .container *, .container {
     transition: 0.25s opacity;
+}
+
+.closeButton {
+    border: none;
+    background: white;
+    font-size: 20px;
 }
 
 @media only screen and (max-width : 1200px) {
