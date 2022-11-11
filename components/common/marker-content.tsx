@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { FC, useState } from "react"
 import styles from '../../styles/components/common/marker-content.module.css'
 import Button from "./button";
@@ -12,11 +13,13 @@ interface MarkerContentProps {
     closeMinute: string;
     closeDay: string;
     tags: string[];
+    id: string;
 }
 
 const MarkerContent: FC<MarkerContentProps> = (props: MarkerContentProps) => {
-    const { name, address, images, openHour, openMinute, closeDay, closeHour, closeMinute, tags } = props;
+    const { name, address, images, openHour, openMinute, closeDay, closeHour, closeMinute, tags, id } = props;
     const [showDetail, setShowDetail] = useState(false);
+    const router = useRouter();
 
     const zeroFill = (n: string | number) => {
         if (typeof n == 'string' && n.length < 2 || n < 10)
@@ -51,7 +54,11 @@ const MarkerContent: FC<MarkerContentProps> = (props: MarkerContentProps) => {
                         </>
                     ))
                 }
-                <Button content='자세히 보기' style={{width:'100%', height: '20px', fontSize: '12px'}}/>
+                <Button 
+                    content='자세히 보기'
+                    style={{width:'100%', height: '20px', fontSize: '12px'}} 
+                    clickEvent={() => router.push(`/cafes/find/${id}`)}
+                />
             </div>
         </div>
     )

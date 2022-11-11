@@ -75,6 +75,7 @@ export const FindNearCafe: FC = () => {
                     closeMinute={cafe.closeMinute}
                     closeDay={cafe.closeDay}
                     tags={cafe.tags}
+                    id={cafe._id}
                   />
                 </CustomOverlayMap>
               ))

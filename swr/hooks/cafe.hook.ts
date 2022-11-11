@@ -10,22 +10,25 @@ export enum CafeAPIQueryType {
 }
 
 type Cafe = { 
-  cafes: { 
-    location: { 
-      coordinates: [number, number] 
-    }, 
-    _id: string, 
-    name: string, 
-    address: string, 
-    images: string[],
-    openHour: string,
-    openMinute: string,
-    closeHour: string,
-    closeMinute: string,
-    closeDay: string,
-    tags: string[], 
-  }[] 
+  cafes: CafeData[],
+  cafe: CafeData,
 };
+
+type CafeData = {
+  location: { 
+    coordinates: [number, number] 
+  }, 
+  _id: string, 
+  name: string, 
+  address: string, 
+  images: string[],
+  openHour: string,
+  openMinute: string,
+  closeHour: string,
+  closeMinute: string,
+  closeDay: string,
+  tags: string[], 
+}
 
 export default function useCafe(queryType: CafeAPIQueryType, query: string | { latitude: number, longitude: number, maxDistance: number }, fetcher?: Fetcher) {
   let url = `/api/cafe/${query}`; 
