@@ -42,7 +42,7 @@ const LocationDialog: FC<LocationDialogProps> = (props: LocationDialogProps, ref
            <Input type='text' placeholder='주소' valueUpdateEvent={value => { setQuery(value) }}/>
            { isLoading ? '' : data ? data.location.filter((_, index) => index < 5).map(location => (
             <div key={location._id} onClick={() => closeAndPassLocation(location.latitude, location.longitude)}>
-                <Box style={{width: '100%'}}>
+                <Box style={{width: '100%', cursor: 'pointer'}}>
                     <ParagraphText content={location.address} />
                     <DetailText content={location.name} />
                 </Box>

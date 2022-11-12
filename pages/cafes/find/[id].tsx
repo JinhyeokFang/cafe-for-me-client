@@ -27,8 +27,8 @@ const FindCafePage: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>카페 추천 사이트</title>
-        <meta name="description" content="Cafe Suggestion Site For Me" />
+        <title>{data ? data.cafe.name : ''}</title>
+        <meta name="description" content={data ? data.cafe.name : ''} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

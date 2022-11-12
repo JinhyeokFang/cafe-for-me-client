@@ -16,7 +16,7 @@ const Button: FC<ButtonProp> = (props: ButtonProp) => {
     <button 
         className={styles.button}
         onClick={clickEvent}
-        style={{ width, height, ...style }}
+        style={{ width, height, cursor:'pointer',...style }}
     >
         { content }
     </button>

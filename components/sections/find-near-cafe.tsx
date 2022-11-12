@@ -59,7 +59,7 @@ export const FindNearCafe: FC = () => {
             })}
           >
           {
-            isLoading ? '' : data ?
+            isLoading || data &&
               data.cafes.map(cafe => (
                 <CustomOverlayMap position={{
                   lat: cafe.location.coordinates[1],
@@ -79,7 +79,6 @@ export const FindNearCafe: FC = () => {
                   />
                 </CustomOverlayMap>
               ))
-            : ''
           }
           </Map>
           <div style={{ display: 'flex', justifyContent:'space-between', marginTop: '10px' }}>

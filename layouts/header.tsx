@@ -19,22 +19,22 @@ const Header: FC = () => {
     }, []);
 
     const isTopOfPage = useMemo(() => {
-        return false && scrollPosition === 0;
+        return scrollPosition === 0;
     }, [scrollPosition]);
 
   return (
     <header>
         <div className={styles.container + (isTopOfPage ? ' ' + styles.container_top : '')}>
-            <div className={styles.logo_container} onClick={() => router.push('/')}>
+            <div className={styles.logo_container} onClick={() => router.push('/')} style={{cursor: 'pointer'}}>
                 <div className={styles.logo}>
                     Cafe4Me
                 </div>
             </div>
             <nav className={styles.navigation_container}>
                 <ul className={styles.navigation}>
-                    <li className={styles.navigation_item} onClick={() => router.push('/')}>카페 찾기</li>
-                    <li className={styles.navigation_item}>카페 추가</li>
-                    <li className={styles.navigation_item}>리뷰 수정</li>
+                    <li className={styles.navigation_item} style={{cursor: 'pointer'}} onClick={() => router.push('/')}>카페 찾기</li>
+                    <li className={styles.navigation_item} style={{cursor: 'pointer'}} onClick={() => router.push('/cafes/add')}>카페 추가</li>
+                    <li className={styles.navigation_item} style={{cursor: 'pointer'}} onClick={() => router.push('/reviews/edit')}>리뷰 수정</li>
                 </ul>
             </nav>
         </div>

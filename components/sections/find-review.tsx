@@ -13,17 +13,21 @@ export const FindReview: FC<FindReviewProps> = (props: FindReviewProps) => {
 
     return (
         <Box>
-            <ParagraphText content={`별점: ${data.reviews[0].rate}`} />
-            <ParagraphText content={data.reviews[0].comment} />
-            <div style={{ display: 'flex' }}>
-                {
-                    data.reviews[0].images.map(image => (
-                      <img src={image} style={{ display: 'block', width: '200px', maxHeight: '200px'}}/>
-                    ))  
-                }
-            </div>
             {
-                data ? JSON.stringify(data.reviews[0].uploaderId) : ''
+                data ? data.reviews[0] ? <>
+                    <ParagraphText content={`별점: ${data.reviews[0].rate}`} />
+                    <ParagraphText content={data.reviews[0].comment} />
+                    <div style={{ display: 'flex' }}>
+                        {
+                            data.reviews[0].images.map(image => (
+                            <img src={image} style={{ display: 'block', width: '200px', maxHeight: '200px'}}/>
+                            ))  
+                        }
+                    </div>
+                    {
+                        data ? JSON.stringify(data.reviews[0].uploaderId) : ''
+                    }
+                </> : '' : ''
             }
         </Box>
     )
