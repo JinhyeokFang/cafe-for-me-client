@@ -7,7 +7,7 @@ export enum ReviewAPIQueryType {
   UserId
 }
 
-export default function useReview(queryType: ReviewAPIQueryType, query?: string, fetcher?: Fetcher) {
+export default function useReview(queryType: ReviewAPIQueryType, query?: string, fetcher?: Fetcher<any>) {
   let url: string;
   switch (queryType) {
     case ReviewAPIQueryType.CafeId:

@@ -28,7 +28,7 @@ export const AddReview: FC<AddReviewProps> = (props: AddReviewProps) => {
     const clearForm = () => {
         setValue('');
         setRate(5);
-        setImage(null);
+        setImage(undefined);
     }
 
     const onAddButtonClicked = async () => {
@@ -48,7 +48,7 @@ export const AddReview: FC<AddReviewProps> = (props: AddReviewProps) => {
             data: formData,
             method: Method.Post,
         });
-        const data = await fetcher('/api/review');
+        await fetcher('/api/review');
         clearForm();
     };
 
