@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    align-items: center;
+    padding: 3px 0;
+    width: 100%;
+}
+
+.tag {
+    background: #6f4e37;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 10px;
+    filter: none;
+    padding: 5px 10px;
+    margin: 5px;
+    min-width: 30px;
+
+    transition: 0.5s all;
+}
+
+.selected {
+    filter: brightness(80%);
+}

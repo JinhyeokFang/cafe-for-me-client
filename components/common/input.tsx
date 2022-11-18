@@ -5,6 +5,7 @@ interface InputProps {
     type: string;
     valueUpdateEvent: (value: string) => void;
     fileUpdateEvent?: (file: FileList | null) => void;
+    keyPressedEvent?: (key: string) => void;
     placeholder?: string;
     defaultValue?: string;
     width?: string;
@@ -17,7 +18,7 @@ export interface InputRef {
 }
 
 const Input: FC<InputProps> = (props: InputProps, ref: MutableRefObject<InputRef>) => {
-    const { type, valueUpdateEvent, fileUpdateEvent, defaultValue, width, height, placeholder } = props;
+    const { type, valueUpdateEvent, fileUpdateEvent, keyPressedEvent, defaultValue, width, height, placeholder } = props;
     const [value, setValue] = useState(defaultValue || '');
 
     const updateValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,6 +40,7 @@ const Input: FC<InputProps> = (props: InputProps, ref: MutableRefObject<InputRef
             className={styles.input} 
             value={value} 
             onChange={updateValue}
+            onKeyDown={e => keyPressedEvent !== undefined ? keyPressedEvent(e.key) : console.log('a')}
             style={{ width, height }}
             placeholder={placeholder} 
         />

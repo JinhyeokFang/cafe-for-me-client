@@ -7,6 +7,7 @@ import useCafe, { CafeAPIQueryType } from '../../swr/hooks/cafe.hook'
 import MarkerContent from '../common/marker-content'
 import LocationDialog, { LocationDialogRef } from '../dialogs/location-dialog'
 import TitleText from '../common/title_text'
+import TagFilter from '../common/tag_filter'
 
 export const FindNearCafe: FC = () => {
   const [location, setLocation] = useState({
@@ -81,6 +82,7 @@ export const FindNearCafe: FC = () => {
               ))
           }
           </Map>
+          <TagFilter tags={['편안한','가성비있는','고급 원두','조용한']} valueUpdateEvent={(selected) => {console.log(selected)}}/>
           <div style={{ display: 'flex', justifyContent:'space-between', marginTop: '10px' }}>
             <Button content='원하는 위치로 이동' width='49.5%' clickEvent={showLocationDialog} />
             <Button content='현재 위치로 이동' width='49.5%' clickEvent={moveToCurrentLocation}/>

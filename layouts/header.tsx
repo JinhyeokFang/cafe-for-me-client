@@ -1,10 +1,12 @@
 import { useRouter } from 'next/router';
 import { FC, useEffect, useMemo, useState } from 'react'
+import { useAuth } from '../auth.context';
 import styles from '../styles/layout/header.module.css'
 
 const Header: FC = () => {
     const [scrollPosition, setScrollPosition] = useState(0);
     const router = useRouter();
+    const { isLogined, setToken, clearToken } = useAuth();
     const handleScroll = () => {
         const position = window.pageYOffset;
         setScrollPosition(position);
@@ -33,8 +35,22 @@ const Header: FC = () => {
             <nav className={styles.navigation_container}>
                 <ul className={styles.navigation}>
                     <li className={styles.navigation_item} style={{cursor: 'pointer'}} onClick={() => router.push('/')}>카페 찾기</li>
-                    <li className={styles.navigation_item} style={{cursor: 'pointer'}} onClick={() => router.push('/cafes/add')}>카페 추가</li>
-                    <li className={styles.navigation_item} style={{cursor: 'pointer'}} onClick={() => router.push('/reviews/edit')}>리뷰 수정</li>
+                    {
+                        isLogined() ?
+                        <>
+                            <li className={styles.navigation_item} style={{cursor: 'pointer'}} onClick={() => router.push('/cafes/add')}>카페 추가</li>
+                            <li className={styles.navigation_item} style={{cursor: 'pointer'}} onClick={() => {
+                                router.push('/')
+                                clearToken();
+                            }}>로그아웃</li>
+                        </> :
+                        <>
+                            <li className={styles.navigation_item} style={{cursor: 'pointer'}} onClick={() => {
+                                router.push('/login');
+                                setToken('a');
+                            }}>로그인</li>
+                        </>
+                    }
                 </ul>
             </nav>
         </div>
