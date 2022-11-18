@@ -16,7 +16,7 @@ const TagFilter: FC<TagFilterProps> = (props: TagFilterProps) => {
 
     useEffect(() => {
         valueUpdateEvent(tags.filter((_, index) => selectedTags[index]));
-    }, [tags, valueUpdateEvent, selectedTags]);
+    }, [selectedTags]);
 
     return (
         <div className={styles.container}>
