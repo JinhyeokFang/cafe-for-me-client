@@ -9,36 +9,53 @@ interface FindReviewProps {
     id: string;
 }
 
+const UploaderText: FC<{ uploaderId: string }> = ({ uploaderId }) => {
+    const { data } = useUser(uploaderId);
+    return <>
+        {
+            data ? <DetailText content={`Uploaded by ${data.nickname}`} /> :
+            <DetailText content='loading...' />
+        }
+    </>;
+}
+
+const Review: FC<{ 
+    rate: string, 
+    comment: string, 
+    uploaderId: string, 
+    images: string[]
+}> = ({ rate, comment, uploaderId, images }) => {
+    return (
+        <>
+            <ParagraphText content={`별점: ${rate}`} />
+            <ParagraphText content={comment} />
+            <UploaderText uploaderId={uploaderId}/>
+            <div style={{ display: 'flex' }}>
+                {
+                    images.map((image: string, index: number) => (
+                        <img src={image} key={index} style={{ display: 'block', width: '200px', maxHeight: '200px'}}/>
+                    ))  
+                }
+            </div>
+        </>
+    )
+}
+
 export const FindReview: FC<FindReviewProps> = (props: FindReviewProps) => {
     const { id } = props;
     const { data } = useReview(ReviewAPIQueryType.CafeId, id as string);
-    const users: string[] = [];
-
-    if (data) {
-        for (const review of data.reviews) {
-            const user = useUser(review.uploaderId).data;
-            if (user && user.nickname)
-                users.push(user.nickname);
-            else
-                users.push('loading...');
-        }
-    }
-
     return (
         <Box>
             {
-                data ? data.reviews[0] ? <>
-                    <ParagraphText content={`별점: ${data.reviews[0].rate}`} />
-                    <ParagraphText content={data.reviews[0].comment} />
-                    <DetailText content={`Uploaded by ${users[0]}`} />
-                    <div style={{ display: 'flex' }}>
-                        {
-                            data.reviews[0].images.map(image => (
-                                <img src={image} style={{ display: 'block', width: '200px', maxHeight: '200px'}}/>
-                            ))  
-                        }
-                    </div>
-                </> : '' : ''
+                data && data.reviews && data.reviews.map((review: Record<string, unknown>, index: number) => (
+                    <Review 
+                        rate={review.rate as string} 
+                        comment={review.comment as string}
+                        uploaderId={review.uploaderId as string}
+                        images={review.images as string[]}
+                        key={index}
+                    />
+                ))
             }
         </Box>
     )

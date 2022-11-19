@@ -47,7 +47,6 @@ const Header: FC = () => {
                         <>
                             <li className={styles.navigation_item} style={{cursor: 'pointer'}} onClick={() => {
                                 router.push('/login');
-                                setToken('a');
                             }}>로그인</li>
                         </>
                     }

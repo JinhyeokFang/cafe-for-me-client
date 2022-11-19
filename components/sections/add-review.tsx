@@ -59,10 +59,10 @@ export const AddReview: FC<AddReviewProps> = (props: AddReviewProps) => {
     }
 
     const onImagesChanged = (files: FileList | null) => {
+        console.log(image);
         if (files === null)
             return;
         setImage(files);
-        console.log(image);
     }
 
     return (

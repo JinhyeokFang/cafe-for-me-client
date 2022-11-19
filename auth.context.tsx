@@ -10,7 +10,7 @@ export interface AuthorizationStoreState {
 export const AuthContext = React.createContext<AuthorizationStoreState>({ 
     token: null,
     setToken(token: string) {},
-    clearToken() {},
+    clearToken() { this.token = null },
     isLogined() { return false },
 });
 

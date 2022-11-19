@@ -13,11 +13,11 @@ type Location = {
 };
 
 export default function useLocation(keyword: string, fetcher?: Fetcher<Location>) {
-    const { data, error } = useSWR<Location>(`/api/location/${keyword}`, fetcher || createFetcher<Location>());
+  const { data, error } = useSWR<Location>(`/api/location/${keyword}`, fetcher || createFetcher<Location>());
 
-    return {
-      data,
-      isLoading: !error && !data,
-      error,
-    };
+  return {
+    data,
+    isLoading: !error && !data,
+    error,
+  };
 }

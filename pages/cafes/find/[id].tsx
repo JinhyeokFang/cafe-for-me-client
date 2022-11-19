@@ -52,8 +52,8 @@ const FindCafePage: NextPage = () => {
                 </div>
                 <div style={{ width: '50%' }}>
                   {
-                    data.cafe.images.map(image => (
-                      <img src={image} style={{ display: 'block', width: '100%'}}/>
+                    data.cafe.images.map((image: string, index: number) => (
+                      <img src={image} key={index} style={{ display: 'block', width: '100%'}}/>
                     ))  
                   }
                 </div>
