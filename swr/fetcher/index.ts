@@ -1,12 +1,18 @@
 import axios, { AxiosResponse } from "axios";
 import { FetcherResponse } from "swr/dist/types";
+import { useAuth } from "../../auth.context";
 import FetcherConfig from "./fetcher-config";
 import Method from "./method";
 
 export type Fetcher<T> = (url: string) => FetcherResponse<T>;
 
 export default function createFetcher<T>(fetcherConfig?: FetcherConfig): Fetcher<T> {
-    const { method, config, data } = fetcherConfig || {};
+    const { method, token, data } = fetcherConfig || {};
+    const config = { 
+        headers: { 
+            Authorization: token 
+        } 
+    };
 
     switch (method) {
         case Method.Post:

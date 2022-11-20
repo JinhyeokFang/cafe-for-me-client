@@ -17,6 +17,7 @@ export const LoginForm: FC = () => {
   const router = useRouter(); 
   const [idValue, setIdValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
+  const [nicknameValue, setNicknameValue] = useState('');
 
   const loginButtonClicked = async () => {
     const fetcher = createFetcher({
@@ -35,9 +36,32 @@ export const LoginForm: FC = () => {
     }
   }
 
+  const registerButtonClicked = async () => {
+    const fetcher = createFetcher({
+      method: Method.Post,
+      data: {
+        name: idValue,
+        password: passwordValue,
+        nickname: nicknameValue,
+      }
+    });
+    try {
+      await fetcher('https://server.jinhy.uk/api/auth/register');
+      alert('회원가입되었습니다.');
+    } catch (error) {
+      alert('error');
+    }
+  }
+
   const keyPressed = (key: string) => {
     if (key === 'Enter') {
       loginButtonClicked();
+    }
+  }
+
+  const nicknameKeyPressed = (key: string) => {
+    if (key === 'Enter') {
+      registerButtonClicked();
     }
   }
 
@@ -48,7 +72,10 @@ export const LoginForm: FC = () => {
         <Input type='text' valueUpdateEvent={v => setIdValue(v)} keyPressedEvent={keyPressed} placeholder='아이디' />
         <DetailText content='비밀번호' />
         <Input type='password' valueUpdateEvent={v => setPasswordValue(v)} keyPressedEvent={keyPressed} placeholder='비밀번호' />
-        <Button content='로그인' style={{ margin: '20px auto 0 auto', minWidth: '50%' }} clickEvent={loginButtonClicked} />
+        <Button content='로그인' style={{ margin: '20px auto', minWidth: '50%' }} clickEvent={loginButtonClicked} />
+        <DetailText content='닉네임' />
+        <Input type='text' valueUpdateEvent={v => setNicknameValue(v)} keyPressedEvent={nicknameKeyPressed} placeholder='닉네임' />
+        <Button content='닉네임 입력하고 회원가입' style={{ margin: '20px auto 0 auto', minWidth: '50%' }} clickEvent={registerButtonClicked} />
       </Box>
   )
 }

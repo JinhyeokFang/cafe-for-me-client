@@ -40,16 +40,13 @@ export const AddReview: FC<AddReviewProps> = (props: AddReviewProps) => {
         formData.append('rate', rate.toString());
         formData.append('cafeId', id);
         const fetcher = createFetcher({
-            config: {
-                headers: {
-                    Authorization: `bearer ${authStore.token}}`
-                }
-            },
-            data: formData,
-            method: Method.Post,
+          data: formData,
+          method: Method.Post,
+          token: authStore.token as string,
         });
         await fetcher('/api/review');
         clearForm();
+        alert('업로드 되었습니다.');
     };
 
     const setRateFromSelectbox = (index: number) => {
@@ -59,7 +56,6 @@ export const AddReview: FC<AddReviewProps> = (props: AddReviewProps) => {
     }
 
     const onImagesChanged = (files: FileList | null) => {
-        console.log(image);
         if (files === null)
             return;
         setImage(files);

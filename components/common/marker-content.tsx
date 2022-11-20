@@ -50,7 +50,7 @@ const MarkerContent: FC<MarkerContentProps> = (props: MarkerContentProps) => {
                 { 
                     images.map((image: string) => (
                         <>
-                            <img src={image} /><br/>
+                            <img src={image} style={{maxWidth:'200px'}} /><br/>
                         </>
                     ))
                 }

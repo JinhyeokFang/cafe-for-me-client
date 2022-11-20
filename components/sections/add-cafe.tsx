@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { FC, useState } from 'react'
 import { Map } from 'react-kakao-maps-sdk';
 import { useAuth } from '../../auth.context';
@@ -13,6 +14,7 @@ import TitleText from '../common/title_text'
 
 export const AddCafe: FC = () => {
   const authStore = useAuth();
+  const router = useRouter();
   const [image, setImage] = useState<FileList | null>();
   const [title, setTitle] = useState('');
   const [address, setAddress] = useState('');
@@ -30,7 +32,6 @@ export const AddCafe: FC = () => {
         return;
     formData.append('images', image[0]);
     formData.append('openHour', openHour);
-    formData.append('openHour', openHour);
     formData.append('openMinute', openMinute);
     formData.append('closeHour', closeHour);
     formData.append('closeMinute', closeMinute);
@@ -39,23 +40,18 @@ export const AddCafe: FC = () => {
     formData.append('name', title);
     formData.append('latitude', location.data.location[0].latitude);
     formData.append('longitude', location.data.location[0].longitude);
-    console.log(authStore.token)
     const fetcher = createFetcher({
-      config: {
-          headers: {
-              Authorization: `bearer ${authStore.token}}`
-          }
-      },
       data: formData,
       method: Method.Post,
+      token: authStore.token as string,
     });
     const data = await fetcher(`/api/cafe`);
-    console.log(data);
+    alert('업로드 되었습니다.');
+    router.push('/');
   }
 
   const onImagesChanged = (files: FileList | null) => {
       setImage(files);
-      console.log(image);
   }
 
   return (

@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 
 export const FindCafeByName: FC = () => {
   const [query, setQuery] = useState('');
-  const { data, isLoading } = useCafe(CafeAPIQueryType.CafeName, query);
+  const { data, isLoading } = useCafe(CafeAPIQueryType.CafeName, query || '카페');
   const router = useRouter();
 
   return (

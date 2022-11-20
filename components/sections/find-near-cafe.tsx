@@ -52,8 +52,8 @@ export const FindNearCafe: FC = () => {
     if (tags.length === 0)
       return true;
     const cafeTags: string[] = cafe.tags as string[];
-    console.log(cafeTags);
-    return cafeTags.filter((value: string) => tags.includes(value)).length === tags.length;
+    console.log(cafeTags.filter((value: string) => tags.includes(value)))
+    return cafeTags.filter((value: string) => tags.includes(value)).length == tags.length;
   };
 
   return (
